@@ -1,24 +1,33 @@
-.custom-input-container {
+.custom-input-group {
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
 }
 
 .custom-input-label {
-  font-weight: bold;
   margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: inherit;
 }
 
 .custom-input {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease-in-out;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background-color: #242424;
+  color: rgba(255, 255, 255, 0.87);
+  transition: border-color 0.25s;
 }
 
 .custom-input:focus {
-  border-color: #007bff;
+  border-color: #646cff;
   outline: none;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+@media (prefers-color-scheme: light) {
+  .custom-input {
+    background-color: #ffffff;
+    color: #213547;
+  }
 }

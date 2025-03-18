@@ -1,34 +1,17 @@
 import React from 'react';
 import './styles/CustomInput.css';
 
-interface CustomInputProps {
-  type: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  required?: boolean;
-  step?: string;
 }
 
-const CustomInput: React.FC<CustomInputProps> = ({
-  type,
-  value,
-  onChange,
-  label,
-  required,
-  step,
-}) => (
-  <div className="custom-input-container">
-    <label className="custom-input-label">{label}</label>
-    <input
-      type={type}
-      value={value}
-      onChange={onChange}
-      required={required}
-      step={step}
-      className="custom-input"
-    />
-  </div>
-);
+const CustomInput: React.FC<CustomInputProps> = ({ label, ...props }) => {
+  return (
+    <div className="custom-input-group">
+      <label className="custom-input-label">{label}</label>
+      <input className="custom-input" {...props} />
+    </div>
+  );
+};
 
 export default CustomInput;

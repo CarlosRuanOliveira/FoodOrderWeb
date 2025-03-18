@@ -1,0 +1,71 @@
+.create-user-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #242424;
+  color: rgba(255, 255, 255, 0.87);
+  padding: 1rem;
+}
+
+.create-user-container {
+  width: 100%;
+  max-width: 600px;
+  background-color: #1a1a1a;
+  color: rgba(255, 255, 255, 0.87);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.back-container {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.back-button {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background-color: #646cff;
+  color: rgba(255, 255, 255, 0.87);
+  cursor: pointer;
+  transition: background-color 0.25s;
+}
+
+.back-button:hover {
+  background-color: #535bf2;
+}
+
+@media (prefers-color-scheme: light) {
+  .create-user-page {
+    background-color: #ffffff;
+    color: #213547;
+  }
+
+  .create-user-container {
+    background-color: #f9f9f9;
+    color: #213547;
+  }
+
+  .back-button {
+    background-color: #747bff;
+    color: #ffffff;
+  }
+
+  .back-button:hover {
+    background-color: #646cff;
+  }
+}
