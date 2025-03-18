@@ -1,0 +1,92 @@
+.manage-menu-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #242424;
+  color: rgba(255, 255, 255, 0.87);
+}
+
+.manage-menu-container {
+  width: 100%;
+  max-width: 800px;
+  padding: 2rem;
+  background-color: #1a1a1a;
+  color: rgba(255, 255, 255, 0.87);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+button {
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background-color: #646cff;
+  color: rgba(255, 255, 255, 0.87);
+  cursor: pointer;
+  transition: background-color 0.25s;
+}
+
+button:hover {
+  background-color: #535bf2;
+}
+
+.alert {
+  margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+  .manage-menu-container {
+    padding: 1rem;
+  }
+}
+
+.back-button {
+  margin-top: 2rem;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background-color: #646cff;
+  color: rgba(255, 255, 255, 0.87);
+  cursor: pointer;
+  transition: background-color 0.25s;
+}
+
+.back-button:hover {
+  background-color: #535bf2;
+}
+
+@media (prefers-color-scheme: light) {
+  .manage-menu-page {
+    background-color: #ffffff;
+    color: #213547;
+  }
+
+  .manage-menu-container {
+    background-color: #f9f9f9;
+    color: #213547;
+  }
+
+  .back-button {
+    background-color: #747bff;
+    color: #ffffff;
+  }
+
+  .back-button:hover {
+    background-color: #646cff;
+  }
+}

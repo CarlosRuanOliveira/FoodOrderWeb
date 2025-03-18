@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import PrivateRoute from './components/PrivateRoute';
 import Dashboard from './pages/Dashboard';
 import Customers from './pages/Customers';
+import ManageMenuItems from './pages/ManageMenuItems';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<PrivateRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/customers" element={<Customers />} />
+            <Route path="/menu" element={<ManageMenuItems />} />
           </Route>
         </Routes>
       </Router>

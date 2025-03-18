@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import { useAuth } from '../contexts/AuthContext';
+import CustomInput from '../components/CustomInput';
 import './styles/Login.css';
 
 const Login = () => {
@@ -25,19 +26,19 @@ const Login = () => {
     <div className="login-container">
       <form onSubmit={handleSubmit} className="login-form">
         <h1>Login</h1>
-        <input
+        <CustomInput
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          className="login-input"
+          label="Email"
+          required
         />
-        <input
+        <CustomInput
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="Senha"
-          className="login-input"
+          label="Senha"
+          required
         />
         <button type="submit" className="login-button">
           Entrar
