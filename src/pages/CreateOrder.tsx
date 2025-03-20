@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button, Alert, Row, Col, Table, Form } from 'react-bootstrap';
+import { Button, Row, Col, Table, Form } from 'react-bootstrap';
 import api from '../services/api';
 import CustomInput from '../components/CustomInput';
 import './styles/CreateOrder.css';
@@ -17,9 +16,9 @@ const CreateOrder = () => {
   const [customerPhone, setCustomerPhone] = useState('');
   const [customerFirstName, setCustomerFirstName] = useState('');
   const [customerLastName, setCustomerLastName] = useState('');
-  const [error, setError] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
-  const navigate = useNavigate();
+  const [modalMessageTitle, setModalMessageTitle] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
   const addItemToOrder = () => {
     if (selectedItem && quantity > 0) {
@@ -37,45 +36,53 @@ const CreateOrder = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-    setSuccessMessage('');
+    setModalMessageTitle('');
 
     if (orderItems.length === 0) {
-      setError('Adicione pelo menos um item ao pedido');
+      setModalMessageTitle('Adicione pelo menos um item ao pedido');
       return;
     }
 
     try {
-      await api.post('/order', {
+      const response = await api.post('/order', {
         customerPhoneNumber: customerPhone,
         customerFirstName: customerFirstName || undefined,
         customerLastName: customerLastName || undefined,
         orderItems: orderItems,
       });
 
-      setSuccessMessage('Pedido criado com sucesso!');
+      const orderId = response.data?.orderId;
+      const customerId = response.data?.customerId;
+      const totalPrice = response.data?.totalPriceCents;
+
+      setModalMessageTitle(`Pedido criado com sucesso!`);
+      showModalMessage(
+        `ID do Pedido: ${orderId} | ID do Cliente: ${customerId} | Preço total: R$${totalPrice}`
+      );
 
       setOrderItems([]);
       setCustomerPhone('');
       setCustomerFirstName('');
       setCustomerLastName('');
-
-      setTimeout(() => {
-        navigate('/orders');
-      }, 2000);
     } catch (err: any) {
-      setError('Erro ao criar pedido: ' + err.response?.data?.message);
+      setModalMessageTitle('Erro ao criar pedido: ');
+      showModalMessage(err.response?.data?.message);
     }
+  };
+
+  const showModalMessage = (message: string) => {
+    setModalMessage(message);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
   };
 
   return (
     <div className="create-order-page">
       <div className="create-order-container">
         <h1>Criar Novo Pedido</h1>
-
-        {error && <Alert variant="danger">{error}</Alert>}
-
-        {successMessage && <Alert variant="success">{successMessage}</Alert>}
 
         <Form onSubmit={handleSubmit}>
           <Row className="mb-3">
@@ -174,6 +181,30 @@ const CreateOrder = () => {
           </Button>
         </Form>
       </div>
+
+      {showModal && (
+        <>
+          <div className="custom-modal-backdrop" onClick={closeModal}></div>
+          <div className="custom-modal">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={closeModal}
+                >
+                  X
+                </button>
+                <h5 className="modal-title">{modalMessageTitle}</h5>
+
+                <div className="modal-body">
+                  <p>{modalMessage}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

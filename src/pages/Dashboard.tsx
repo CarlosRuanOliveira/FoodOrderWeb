@@ -41,7 +41,7 @@ const Dashboard = () => {
               className="dashboard-button"
               onClick={() => navigate('/orders')}
             >
-              Atualizar um pedido
+              Atualizar um pedido (Status/Itens)
             </button>
           </li>
           <li>
