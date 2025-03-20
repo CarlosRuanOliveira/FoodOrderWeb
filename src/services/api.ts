@@ -2,7 +2,7 @@ import axios from 'axios';
 import { logout } from './authHelper';
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8080/',
+  baseURL: 'https://foodorderapi-production.up.railway.app',
 });
 
 api.interceptors.request.use(
