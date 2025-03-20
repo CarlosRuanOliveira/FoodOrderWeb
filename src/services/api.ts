@@ -2,25 +2,27 @@ import axios from 'axios';
 import { logout } from './authHelper';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8080/',
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8080/',
 });
 
-
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token && config.headers) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      console.log('Token expirado, deslogando...');
+      console.warn('Token expirado, deslogando...');
       logout();
-      window.location.href = '/login';
+      setTimeout(() => (window.location.href = '/login'), 500);
     }
     return Promise.reject(error);
   }
