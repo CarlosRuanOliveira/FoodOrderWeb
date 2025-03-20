@@ -3,7 +3,7 @@ import { Form, Button, Table, Container } from 'react-bootstrap';
 import api from '../services/api';
 import { OrderStatus } from '../models/enums/OrderStatus';
 import { OrderItem } from '../models/OrderItem';
-import CustomInput from '../components/CustomInput'; // Importando o CustomInput
+import CustomInput from '../components/CustomInput';
 import './styles/UpdateOrder.css';
 
 const UpdateOrder = () => {
@@ -88,7 +88,7 @@ const UpdateOrder = () => {
             }
           >
             {Object.entries(OrderStatus)
-              .filter(([key, value]) => !isNaN(Number(value)))
+              .filter(([_, value]) => !isNaN(Number(value)))
               .map(([key, value]) => (
                 <option key={value} value={value}>
                   {key}
