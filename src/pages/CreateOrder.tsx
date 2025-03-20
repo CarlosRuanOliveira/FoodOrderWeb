@@ -63,7 +63,7 @@ const CreateOrder = () => {
       setTimeout(() => {
         navigate('/orders');
       }, 2000);
-    } catch (err) {
+    } catch (err: any) {
       setError('Erro ao criar pedido: ' + err.response?.data?.message);
     }
   };
